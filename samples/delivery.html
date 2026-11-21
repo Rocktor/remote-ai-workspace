@@ -1,0 +1,27 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>交付回执 · 版本对照示例</title>
+<style>
+*{box-sizing:border-box}body{margin:0;color:#282b24;background-color:#cbcabe;background-image:repeating-linear-gradient(0deg,transparent 0 4px,#b7b8ab35 4px 5px);font:16px/1.55 "Instrument Sans","PingFang SC","Microsoft YaHei",sans-serif}.paper{position:relative;max-width:1060px;margin:clamp(12px,3vw,45px) auto;background:#f9f7ec;border:1px solid #acae9f;padding:clamp(20px,4vw,58px);box-shadow:5px 7px 0 #989a8d,0 12px 25px #242e2717}.mast{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-bottom:13px;border-bottom:2px solid #30352c}.mast strong{font:700 13px/1.3 "Courier Prime",monospace;letter-spacing:.1em}.mast strong:before{content:"";width:10px;height:10px;display:inline-block;margin-right:8px;background:#4e773c}.mast small,footer{font-size:12px;color:#4a5246}.title{display:flex;justify-content:space-between;align-items:center;gap:20px;margin:23px 0 28px}.eyebrow{margin:0 0 7px;color:#4d713c;font:700 12px/1.4 "Courier Prime",monospace;letter-spacing:.1em}h1{font:700 clamp(37px,5.8vw,81px)/1.06 "Songti SC","STSong",Georgia,serif;letter-spacing:-.065em;margin:0}.stamp{border:3px double #476941;color:#476941;padding:6px 11px;transform:rotate(-7deg);font:700 clamp(17px,2.5vw,34px)/1.1 "Songti SC",serif;white-space:nowrap}.stamp small{display:block;font:9px/1.6 "Courier Prime",monospace;letter-spacing:.15em;text-align:center}.history{border-top:2px solid #30352c}.row{display:grid;grid-template-columns:86px 1fr 90px;gap:20px;align-items:baseline;border-bottom:1px solid #a7aa98;padding:12px 0}.row b{color:#3a5734}.row p{margin:0}.row small{font:12px/1.4 "Courier Prime",monospace;text-align:right;color:#626959}.proof{margin:26px 0 24px;border:1px solid #86927a}.proof-h,.version-toggle{display:flex;align-items:center}.proof-h{justify-content:space-between;gap:8px;background:#e8edda;border-bottom:1px solid #a7b29c;padding:9px 16px}.proof-h h2{font-size:14px;margin:0}.version-toggle{gap:5px}button{font:600 13px/1.5 inherit;font-family:inherit;cursor:pointer}button:focus-visible{outline:3px solid #3860be;outline-offset:3px}.version-toggle button{padding:4px 12px;background:transparent;border:1px solid #7d8c70;color:#364633}.version-toggle [aria-pressed=true]{background:#385732;color:#fff;border-color:#385732}.preview{padding:19px 19px 20px;min-height:115px}.preview h3{margin:0 0 5px;font:650 clamp(21px,3vw,34px)/1.3 "Songti SC",serif}.preview p{margin:0;color:#4b5345}.actions{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}.print{background:#30502d;color:#fff;border:0;padding:9px 15px;font:600 13px/1.5 inherit;font-family:inherit}.file{font:12px/1.6 "Courier Prime",monospace;color:#5e665b}footer{margin-top:22px;padding-top:8px;border-top:1px dashed #aaa99d}
+@media(max-width:600px){.paper{margin:9px;padding:18px;box-shadow:3px 4px 0 #989a8d}.title{gap:8px}.row{grid-template-columns:44px 1fr;gap:10px}.row small{display:none}.proof-h{padding:8px 10px}.mast strong{font-size:10px}.mast small{font-size:10px}.preview{padding:15px}.stamp{padding:5px 7px}}
+@media print{@page{margin:15mm}body{background:#fff}.paper{max-width:none;margin:0;padding:0;box-shadow:none;border:0}.version-toggle,.print{display:none}.proof,.row,.title{break-inside:avoid}}
+</style></head><body><main class="paper"><header class="mast"><strong>DELIVERY RECORD</strong><small>工单样例 / 网页交付</small></header>
+<div class="title"><div><p class="eyebrow">WORK ORDER · FN-01</p><h1>一单怎么交付</h1></div><div class="stamp">已验收<small>SAMPLE RECORD</small></div></div>
+<section aria-label="履约记录" class="history"><div class="row"><b>需求</b><p>提交商品资料，约定交付手机可读的介绍页及可编辑源文件。</p><small>BRIEF</small></div><div class="row"><b>改稿</b><p>客户要求把主机租金和模型订阅拆开写。第二版在价格下方补明费用承担方。</p><small>REVISION</small></div><div class="row"><b>验收</b><p>客户核对第二版费用说明，在手机上打开预览，并确认收到了源文件。</p><small>ACCEPTED</small></div></section>
+<section class="proof" aria-labelledby="version-title"><div class="proof-h"><h2 id="version-title">商品费用文案 · 版本对照</h2><div class="version-toggle" aria-label="选择文案版本"><button type="button" data-version="1" aria-pressed="false">v1</button><button type="button" data-version="2" aria-pressed="true">v2</button></div></div><div class="preview" aria-live="polite"><h3 id="headline">主机试点意向价 ¥1,000／台／月</h3><p id="description">租金覆盖工作环境。模型订阅由客户自备，用量另由客户承担。</p></div></section>
+<div class="actions"><span class="file" id="version-file">交付件 / 商品费用说明 · v2（验收版）</span><button type="button" class="print" id="print">打印／存为 PDF</button></div><footer>本页为演示回执。需求、改稿和验收记录均用于说明交付过程。</footer></main>
+<script>
+const versions = {
+  1: ['远程工作台 ¥1,000／月起', '可连接工作环境，使用开发工具。订阅费用将在开通时另行说明。', '交付件 / 商品费用说明 · v1（初稿）'],
+  2: ['主机试点意向价 ¥1,000／台／月', '租金覆盖工作环境。模型订阅由客户自备，用量另由客户承担。', '交付件 / 商品费用说明 · v2（验收版）']
+};
+const controls = document.querySelectorAll('[data-version]');
+for (const button of controls) {
+  button.addEventListener('click', () => {
+    const [headline, description, file] = versions[button.dataset.version];
+    document.getElementById('headline').textContent = headline;
+    document.getElementById('description').textContent = description;
+    document.getElementById('version-file').textContent = file;
+    for (const candidate of controls) candidate.setAttribute('aria-pressed', String(candidate === button));
+  });
+}
+document.getElementById('print').addEventListener('click', () => window.print());
+</script></body></html>
