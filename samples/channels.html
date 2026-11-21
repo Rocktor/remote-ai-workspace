@@ -1,5 +1,40 @@
 <!doctype html><html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>项目频道 · 交付样例</title><style>
-*{box-sizing:border-box}body{margin:0;background:#c7bafb;color:#232034;font:16px/1.55 -apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif;min-height:100vh;padding:6vw}.wrap{width:min(100%,950px);margin:auto;box-shadow:0 20px 75px #46346648;border-radius:18px;overflow:hidden}.mast{display:flex;justify-content:space-between;align-items:center;background:#211e2f;color:white;padding:22px 30px}.mast small{color:#c6baf8}.app{background:#f5f3fc;display:grid;grid-template-columns:185px 1fr;min-height:420px}aside{background:#393546;color:#fff;padding:28px 16px}aside small{display:block;margin:0 0 12px;color:#c4c0d8}button{width:100%;cursor:pointer;padding:10px;text-align:left;border:0;border-radius:7px;background:transparent;color:#cecbdc;font:inherit}button[aria-pressed=true]{background:#605371;color:white}main{padding:32px 36px}h1{margin:0 0 5px;font-size:clamp(24px,3.8vw,41px)}main small{color:#655d72}article{margin:24px 0;padding:20px 22px;background:white;border:1px solid #e1d9ef;border-radius:10px}h2{font-size:14px;color:#6c508b;margin:0}p{margin:8px 0}.file{display:inline-block;padding:8px 13px;border-radius:6px;background:#e8e0fa;color:#493d65;font-size:13px}@media(max-width:660px){body{padding:10px}.app{display:block}aside{display:flex;flex-wrap:wrap;gap:4px;padding:10px}aside small{width:100%;margin:0}button{width:auto}main{padding:22px}.mast{padding:16px}}
-</style><div class="wrap"><div class="mast"><b>频道工作区</b><small>协作交付样例</small></div><div class="app"><aside><small>项目频道</small><button aria-pressed="true" data-i="0"># 商品页更新</button><button aria-pressed="false" data-i="1"># 开发交付</button></aside><main><small id="label"></small><h1 id="name"></h1><p id="intro"></p><article><h2>已确认</h2><p id="decision"></p><span class="file" id="file"></span></article><h2>下一步</h2><p id="next"></p></main></div></div><script>
-const rows=[['项目频道 01','商品页更新','把主机月租和订阅用量分行说明。','V2 已更新价格说明；保留可编辑的网页源文件。','交付物 · 商品介绍页 V2.html','由委托人核对移动端显示并在本频道确认。'],['项目频道 02','开发交付','把金额按两位小数显示，并覆盖零金额。','实现差异和测试结果已交回指定分支。','交付物 · 代码差异与测试报告','由项目负责人复核提交并决定是否合并。']];function show(i){['label','name','intro','decision','file','next'].forEach((k,j)=>document.getElementById(k).textContent=rows[i][j]);document.querySelectorAll('button').forEach(b=>b.setAttribute('aria-pressed',String(Number(b.dataset.i)===i)))}document.querySelectorAll('button').forEach(b=>b.onclick=()=>show(Number(b.dataset.i)));show(0);
+*{box-sizing:border-box}body{margin:0;background:#c7bafb;color:#232034;font:16px/1.55 -apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif;min-height:100vh;padding:6vw}.wrap{width:min(100%,950px);margin:auto;box-shadow:0 20px 75px #46346648;border-radius:18px;overflow:hidden}.mast{display:flex;justify-content:space-between;align-items:center;background:#211e2f;color:white;padding:22px 30px}.mast small{color:#c6baf8}.app{background:#f5f3fc;display:grid;grid-template-columns:185px 1fr;min-height:420px}aside{background:#393546;color:#fff;padding:28px 16px}aside small{display:block;margin:0 0 12px;color:#c4c0d8}aside button{width:100%;cursor:pointer;padding:10px;text-align:left;border:0;border-radius:7px;background:transparent;color:#cecbdc;font:inherit}aside button[aria-pressed=true]{background:#605371;color:white}main{padding:32px 36px}h1{margin:0 0 5px;font-size:clamp(24px,3.8vw,41px)}main small{color:#655d72}article{margin:24px 0;padding:20px 22px;background:white;border:1px solid #e1d9ef;border-radius:10px}h2{font-size:14px;color:#6c508b;margin:0}p{margin:8px 0}.file{border:0;font:inherit;cursor:pointer;display:inline-block;padding:8px 13px;border-radius:6px;background:#e8e0fa;color:#493d65;font-size:13px}@media(max-width:660px){body{padding:10px}.app{display:block}aside{display:flex;flex-wrap:wrap;gap:4px;padding:10px}aside small{width:100%;margin:0}aside button{width:auto}main{padding:22px}.mast{padding:16px}}
+</style><div class="wrap"><div class="mast"><b>频道工作区</b><small>协作交付样例</small></div><div class="app"><aside><small>项目频道</small><button aria-pressed="true" data-i="0"># 读书会报名页</button><button aria-pressed="false" data-i="1"># 开发交付</button></aside><main aria-live="polite"><small id="label"></small><h1 id="name"></h1><p id="intro"></p><article><h2>已确认</h2><p id="decision"></p><button type="button" class="file" id="file"></button></article><h2>下一步</h2><p id="next"></p></main></div></div><script>
+const projects = [
+  {
+    name: '读书会报名页', brief: '报名延期两天，更新活动页与现场签到说明。',
+    decision: '报名截止时间已改为 6 月 14 日 18:00。参加者可凭确认邮件签到。',
+    next: '主办方在手机上核对最终文案，再将活动页发给参加者。', file: '报名页交接记录'
+  },
+  {
+    name: '开发交付', brief: '在活动收款记录里统一显示两位小数，覆盖零金额和退款。',
+    decision: '金额展示已修正，零值、负数、千分位和舍入四组用例已通过。',
+    next: '项目负责人复核代码差异和测试记录，决定是否合并。', file: '金额显示测试记录'
+  }
+];
+const buttons = [...document.querySelectorAll('aside [data-i]')];
+let activeProject = projects[0];
+function selectProject(index) {
+  activeProject = projects[index];
+  document.getElementById('label').textContent = '项目频道 0' + (index + 1);
+  document.getElementById('name').textContent = activeProject.name;
+  document.getElementById('intro').textContent = activeProject.brief;
+  document.getElementById('decision').textContent = activeProject.decision;
+  document.getElementById('next').textContent = activeProject.next;
+  document.getElementById('file').textContent = '下载' + activeProject.file + ' · TXT';
+  buttons.forEach(button => button.setAttribute('aria-pressed', String(Number(button.dataset.i) === index)));
+}
+buttons.forEach(button => button.addEventListener('click', () => selectProject(Number(button.dataset.i))));
+document.getElementById('file').addEventListener('click', () => {
+  const project = activeProject;
+  const notes = [project.file, '', '任务', project.brief, '', '交接结果', project.decision, '', '下一步', project.next];
+  const url = URL.createObjectURL(new Blob(['\uFEFF' + notes.join('\n')], {type:'text/plain;charset=utf-8'}));
+  const link = document.createElement('a');
+  link.href = url;
+  link.download = project.file + '.txt';
+  link.click();
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
+});
+selectProject(0);
 </script></html>
