@@ -3,375 +3,393 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#F2EFE6">
-<meta name="description" content="一台 24 小时在线的专属 Mac，装好 Claude Code，接进你的飞书和 Discord。在话题里交代任务，合上电脑它接着做，做完在话题里叫你。按月付，试点招募中。">
-<meta property="og:title" content="远程 AI 工作台 · 发条消息，有台 Mac 替你开工">
-<meta property="og:description" content="24 小时在线的专属 Mac + Claude Code，从飞书、Discord 或 SSH 派活。合上电脑，它接着做。">
+<meta name="theme-color" content="#0B0C0E">
+<meta name="description" content="一台 24 小时开着的 Mac mini，装好 Claude Code，接进你的飞书和 Discord。发条消息，它就开工。按月付，试点招募中。">
+<meta property="og:title" content="远程 AI 工作台">
+<meta property="og:description" content="一台 24 小时开着的 Mac mini，装好 Claude Code，接进你的飞书和 Discord。发条消息，它就开工。">
 <meta property="og:type" content="website">
-<title>远程 AI 工作台 · 发条消息，有台 Mac 替你开工</title>
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2315140F'/%3E%3Ccircle cx='22' cy='21' r='3' fill='%2334D17F'/%3E%3Crect x='7' y='9' width='12' height='3' rx='1.5' fill='%23F2EFE6'/%3E%3C/svg%3E">
-<link rel="stylesheet" href="style.css?v=2">
-<script defer src="app.js?v=2"></script>
+<title>远程 AI 工作台</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23EDEEF1'/%3E%3Crect x='8' y='11' width='16' height='10' rx='3' fill='%230B0C0E'/%3E%3Ccircle cx='21' cy='16' r='1.6' fill='%238EA2F0'/%3E%3C/svg%3E">
+<script>
+  (function () {
+    var q = /[?&]lang=(zh|en)/.exec(location.search), saved = null;
+    try { saved = localStorage.getItem('lang'); } catch (e) {}
+    var nav = (navigator.languages && navigator.languages[0]) || navigator.language || 'zh';
+    var lang = q ? q[1] : saved || (/^zh/i.test(nav) ? 'zh' : 'en');
+    window.__lang = lang;
+    if (lang === 'en') {
+      document.documentElement.lang = 'en';
+      document.documentElement.classList.add('i18n-pending');
+      setTimeout(function () { document.documentElement.classList.remove('i18n-pending'); }, 2000);
+    }
+  })();
+</script>
+<link rel="stylesheet" href="style.css?v=3">
+<script defer src="i18n.js?v=3"></script>
+<script defer src="app.js?v=3"></script>
 </head>
 <body>
-<a class="skip" href="#demo">跳到演示</a>
+<a class="skip" href="#demo" data-i18n="skip">跳到演示</a>
 
 <header class="top">
-  <a class="brand" href="#top" aria-label="远程 AI 工作台"><span class="brand-mark" aria-hidden="true"><i></i></span>远程 AI 工作台</a>
-  <nav class="top-nav" aria-label="页面导航">
-    <a href="#why">为什么</a>
-    <a href="#entry">怎么用</a>
-    <a href="#pricing">月费</a>
-    <a href="#faq">问答</a>
-  </nav>
-  <a class="btn btn-ink btn-sm" href="#pilot">申请试点</a>
+  <div class="top-in">
+    <a class="brand" href="#top"><span class="brand-mark" aria-hidden="true"><i></i></span><span data-i18n="brand">远程 AI 工作台</span></a>
+    <nav class="top-nav" data-i18n-attr="aria-label:navLabel" aria-label="页面导航">
+      <a href="#demo" data-i18n="nav1">演示</a>
+      <a href="#entry" data-i18n="nav2">入口</a>
+      <a href="#kit" data-i18n="nav3">配置</a>
+      <a href="#pricing" data-i18n="nav4">月费</a>
+      <a href="#faq" data-i18n="nav5">问答</a>
+    </nav>
+    <div class="top-act">
+      <button class="lang" type="button" id="lang-btn" data-i18n="langBtn" data-i18n-attr="aria-label:langLabel" aria-label="Switch to English">EN</button>
+      <a class="pill pill-light pill-sm" href="#pilot" data-i18n="ctaTop">申请试点</a>
+    </div>
+  </div>
 </header>
 
 <main id="top">
 
-<!-- ───────── 首屏 ───────── -->
 <section class="hero">
-  <p class="status-pill"><span class="dot" aria-hidden="true"></span>试点招募中 · 首批 3–4 个机位</p>
-  <div class="hero-head">
-    <h1>发条消息，<br>有台 Mac <em>替你开工</em>。</h1>
-    <div class="hero-side">
-      <p class="lead">一台 24 小时在线的专属 Mac，装好 Claude Code，接进你的飞书和 Discord。在话题里交代任务，合上电脑，它接着做，做完在话题里叫你。开通当天就能派活。</p>
-      <div class="hero-cta">
-        <a class="btn btn-accent" href="#pilot">申请试点机位</a>
-        <a class="btn btn-ghost" href="#pricing">看月费 <span aria-hidden="true">↓</span></a>
+  <div class="hero-in">
+    <div class="hero-copy">
+      <p class="meta"><span class="dot" aria-hidden="true"></span><span data-i18n="heroMeta1">试点招募中</span><i>·</i><span data-i18n="heroMeta2">首批 3–4 台</span><i>·</i><b data-i18n="heroMeta3">按月付</b></p>
+      <h1 data-i18n="heroTitle">远程 AI 工作台</h1>
+      <p class="hero-sub" data-i18n="heroSub">一台 24 小时开着的 Mac mini，装好了 Claude Code，接进你的飞书和 Discord。你发条消息，它就开工。</p>
+      <a class="pill pill-light pill-split" href="#pilot"><span data-i18n="heroCta">申请试点</span><span class="pill-price" data-i18n="heroPrice">¥1,000/月起</span></a>
+      <p class="hero-note" data-i18n="heroNote">首批名额有限，按申请先后开通。</p>
+    </div>
+    <div class="hero-visual">
+      <div class="glow" aria-hidden="true"></div>
+      <img class="device" src="device.webp" width="1040" height="735" data-i18n-attr="alt:deviceAlt" alt="Mac mini 主机">
+      <div class="status-card" aria-hidden="true">
+        <div class="sc-head"><span class="dot"></span><b>mac-07</b><span class="sc-up" data-i18n="scUp">已连续开机 12 天</span></div>
+        <ul>
+          <li><span>Claude Code</span><em data-i18n="scRow1">正在跑测试</em></li>
+          <li><span data-i18n="feishu">飞书</span><em data-i18n="scRow2">3 个话题</em></li>
+          <li><span>Discord</span><em data-i18n="scRow3">2 个频道</em></li>
+        </ul>
       </div>
     </div>
-  </div>
-
-  <div class="stage" id="demo" aria-label="工作台演示">
-    <div class="stage-bar">
-      <div class="tabs" role="tablist" aria-label="选择入口">
-        <button role="tab" type="button" data-scene="feishu" aria-selected="true">飞书</button>
-        <button role="tab" type="button" data-scene="discord" aria-selected="false">Discord</button>
-        <button role="tab" type="button" data-scene="ssh" aria-selected="false">SSH</button>
-        <button role="tab" type="button" data-scene="upgrade" aria-selected="false">额度用满</button>
-      </div>
-      <button class="replay" type="button" id="replay"><span aria-hidden="true">↻</span> 重播</button>
-    </div>
-
-    <div class="stage-body">
-      <!-- 你这边 -->
-      <div class="pane pane-you" id="pane-you">
-        <div class="pane-head">
-          <div class="pane-title"><small>你这边</small><b id="you-title">话题 · 读书会报名页</b></div>
-          <button class="lid" type="button" id="lid" aria-pressed="false">
-            <span class="lid-icon" aria-hidden="true"><i></i></span><span id="lid-label">合上电脑</span>
-          </button>
-        </div>
-        <div class="feed" id="feed" aria-live="polite"></div>
-        <div class="closed" id="closed" aria-hidden="true">
-          <div class="closed-laptop" aria-hidden="true"><i></i></div>
-          <p class="closed-text" id="closed-text">电脑已合上</p>
-          <div class="notify" id="notify" role="status"></div>
-        </div>
-      </div>
-
-      <div class="wire" id="wire" aria-hidden="true"><span id="wire-text">已连接</span></div>
-
-      <!-- 工作台那边 -->
-      <div class="pane pane-box">
-        <div class="pane-head">
-          <div class="pane-title"><small>工作台那边</small><b>mac-07 <span class="online"><span class="dot"></span>在线</span></b></div>
-          <div class="uptime" title="连续在线时间">已连续在线 <b id="uptime">12 天 04:21:07</b></div>
-        </div>
-        <div class="log" id="log" aria-live="polite"></div>
-        <div class="pane-foot"><span id="cwd">~/projects/reading-club</span><span id="box-state">等待任务</span></div>
-      </div>
-    </div>
-    <p class="stage-note">演示为示意脚本。任务内容是举例，流程和你实际使用时一致。</p>
-  </div>
-
-  <ul class="plate" aria-label="基本信息">
-    <li><b>活不会断</b><span>主机 24 小时在线，合上电脑它照样干</span></li>
-    <li><b>进度不丢</b><span>换设备、换档、换账号，项目和上下文都在</span></li>
-    <li><b>当天派活</b><span>Claude Code、飞书、Discord 全部配好</span></li>
-    <li><b>额度随时加</b><span>¥1,000 起，用满一句话升档</span></li>
-  </ul>
-</section>
-
-<!-- ───────── 为什么 ───────── -->
-<section class="sec" id="why">
-  <div class="sec-head">
-    <p class="kicker">01 · 为什么需要它</p>
-    <h2>AI 干活已经够快了。<br>慢的是你的电脑得一直开着。</h2>
-  </div>
-  <div class="swap">
-    <div class="swap-row swap-top"><span>在自己电脑上跑</span><span>放到工作台上</span></div>
-    <div class="swap-row"><p>合上电脑、断一下网，跑到一半的任务就停了。</p><p><b>主机一直在线。</b>任务在后台接着跑，你出门、开会、睡觉都不耽误。</p></div>
-    <div class="swap-row"><p>换台设备，环境、依赖、上下文全部重来。</p><p><b>项目住在主机上。</b>代码、依赖、日志、对话记录都在，从哪台设备进来都接着上次。</p></div>
-    <div class="swap-row"><p>人得守在终端前，等它问一句、点一下确认。</p><p><b>它做完来找你。</b>在飞书或 Discord 里派活，结果、文件和链接直接发回话题。</p></div>
-    <div class="swap-row"><p>账号出了问题，项目、对话上下文跟着一起没了。</p><p><b>账号和活是分开的。</b>项目、上下文、飞书接入都留在主机上，账号或模型换一个，接着上次往下干。</p></div>
-    <div class="swap-row"><p>额度用完只能干等，几个小时甚至几天后才恢复。</p><p><b>额度不够就升档。</b>它会在话题里提醒你，回一句「升」，当天换到更高档，任务原地继续。</p></div>
-  </div>
-
-  <div class="day" aria-label="一天 24 小时里，你的电脑和工作台各自在线的时间">
-    <div class="day-head">
-      <h3>你下线的 16 个小时，它没下线。</h3>
-      <p>一个普通工作日。上面是你的电脑开着的时间，下面是工作台在做的事。</p>
-    </div>
-    <div class="day-chart">
-      <div class="track">
-        <span class="track-name">你的电脑</span>
-        <div class="track-bar">
-          <i class="seg seg-you" style="--a:9.5;--b:12"></i>
-          <i class="seg seg-you" style="--a:14;--b:18.5"></i>
-          <i class="seg seg-you" style="--a:21;--b:22"></i>
-        </div>
-      </div>
-      <div class="track">
-        <span class="track-name">工作台</span>
-        <div class="track-bar track-on">
-          <i class="seg seg-task" style="--a:9.7;--b:11.3"></i>
-          <i class="seg seg-task" style="--a:12.2;--b:13.6"></i>
-          <i class="seg seg-task" style="--a:19;--b:20.4"></i>
-          <i class="seg seg-task" style="--a:1.5;--b:4"></i>
-        </div>
-      </div>
-      <div class="hours" aria-hidden="true"><span>0</span><span>6</span><span>12</span><span>18</span><span>24</span></div>
-    </div>
-    <ol class="day-notes">
-      <li><time>09:40</time><p>地铁上在飞书里发了需求，它当场开工。</p></li>
-      <li><time>12:10</time><p>你去吃饭，它把全量测试跑完，结果发回话题。</p></li>
-      <li><time>19:00</time><p>下班路上回一句「标题再大一点」，它改出第二版。</p></li>
-      <li><time>01:30</time><p>睡前交代的数据迁移，夜里跑完，早上看回执。</p></li>
-    </ol>
   </div>
 </section>
 
-<!-- ───────── 怎么用 ───────── -->
+<!-- 01 演示 -->
+<section class="sec" id="demo">
+  <div class="sec-in">
+    <p class="num">01</p>
+    <h2 data-i18n="s1Title">合上电脑，<br>活接着干。</h2>
+    <p class="sec-sub" data-i18n="s1Sub">任务跑在这台 Mac 上，不在你手边的电脑上。你出门、断网、睡觉，它都在继续，做完在话题里叫你。</p>
+
+    <div class="stage" data-i18n-attr="aria-label:stageLabel" aria-label="工作台演示">
+      <div class="stage-bar">
+        <div class="tabs" role="tablist" data-i18n-attr="aria-label:tabsLabel" aria-label="选择场景">
+          <button role="tab" type="button" data-scene="feishu" aria-selected="true" data-i18n="feishu">飞书</button>
+          <button role="tab" type="button" data-scene="discord" aria-selected="false">Discord</button>
+          <button role="tab" type="button" data-scene="ssh" aria-selected="false">SSH</button>
+          <button role="tab" type="button" data-scene="upgrade" aria-selected="false" data-i18n="tabUpgrade">额度用满</button>
+        </div>
+        <button class="replay" type="button" id="replay"><span aria-hidden="true">↻</span> <span data-i18n="replay">重播</span></button>
+      </div>
+      <div class="stage-body">
+        <div class="pane pane-you" id="pane-you">
+          <div class="pane-head">
+            <div class="pane-title"><small data-i18n="yourSide">你这边</small><b id="you-title"></b></div>
+            <button class="lid" type="button" id="lid" aria-pressed="false"><span class="lid-icon" aria-hidden="true"><i></i></span><span id="lid-label"></span></button>
+          </div>
+          <div class="feed" id="feed" aria-live="polite"></div>
+          <div class="closed" id="closed" aria-hidden="true">
+            <div class="closed-laptop" aria-hidden="true"><i></i></div>
+            <p class="closed-text" id="closed-text"></p>
+            <div class="notify" id="notify" role="status"></div>
+          </div>
+        </div>
+        <div class="wire" id="wire" aria-hidden="true"><span id="wire-text"></span></div>
+        <div class="pane pane-box">
+          <div class="pane-head">
+            <div class="pane-title"><small data-i18n="boxSide">工作台那边</small><b>mac-07 <span class="online"><span class="dot"></span><span data-i18n="online">在线</span></span></b></div>
+            <div class="uptime"><span data-i18n="uptime">已连续在线</span><b id="uptime"></b></div>
+          </div>
+          <div class="log" id="log" aria-live="polite"></div>
+          <div class="pane-foot"><span id="cwd"></span><span id="box-state"></span></div>
+        </div>
+      </div>
+      <p class="stage-note" data-i18n="stageNote">演示用的是示例任务，流程和实际使用一致。</p>
+    </div>
+  </div>
+</section>
+
+<!-- 02 入口 -->
 <section class="sec" id="entry">
-  <div class="sec-head">
-    <p class="kicker">02 · 怎么用</p>
-    <h2>从你已经在用的地方进来。</h2>
-    <p class="sec-lead">不用学新工具。习惯聊天的在聊天里派活，习惯终端的直接连上去。同一台主机、同一份项目，四个入口随时切换。</p>
-  </div>
-  <div class="entries">
-    <article class="entry">
-      <span class="entry-tag">飞书</span>
-      <h3>一个话题跟一件事</h3>
-      <p>说出需求、看它改、回一句确认。适合接单、运营和不想碰终端的人。</p>
-      <p class="entry-proof">从最终文件能一路追到当初的原话、每次修改和验收回复。</p>
-    </article>
-    <article class="entry">
-      <span class="entry-tag">Discord</span>
-      <h3>一个频道管一个项目</h3>
-      <p>几个项目同时推进，各有各的频道和工作目录。适合多线并行和小团队。</p>
-      <p class="entry-proof">谁能看哪个频道、动哪个项目，按频道分开授权。</p>
-    </article>
-    <article class="entry">
-      <span class="entry-tag">SSH</span>
-      <h3>终端直连，照常开发</h3>
-      <p>登录主机，开 tmux，跑 Claude Code、测试和构建。适合开发者。</p>
-      <p class="entry-proof">断开再连，目录、日志和没跑完的会话都还在。</p>
-    </article>
-    <article class="entry">
-      <span class="entry-tag">远程桌面</span>
-      <h3>需要看画面的时候</h3>
-      <p>打开主机桌面，用 Xcode、模拟器、浏览器这些带界面的开发工具。</p>
-      <p class="entry-proof">文件就在主机上，改完直接进仓库，不用来回传。</p>
-    </article>
-  </div>
+  <div class="sec-in">
+    <p class="num">02</p>
+    <h2 data-i18n="s2Title">在聊天里派活，<br>在话题里收货。</h2>
+    <p class="sec-sub" data-i18n="s2Sub">不用学新工具。从飞书、Discord 进来，或者直接连终端，用的都是同一台机器、同一份项目。</p>
 
-  <div class="map">
-    <div class="map-copy">
-      <h3>一个话题，一个项目。</h3>
-      <p>每个话题或频道对应主机上一个独立的项目：自己的目录、自己的会话、自己的凭据。这边在改官网，那边在修接口，互不串台。</p>
-      <p>每一轮做完，项目可以自动推送到你自己的 GitHub 仓库。主机上的东西，你随时带得走。</p>
+    <div class="cols cols-4">
+      <div class="col">
+        <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 5H4v11h3v4l5-4h8z"/></svg>
+        <h3 data-i18n="feishu">飞书</h3>
+        <p data-i18n="e1">一个话题跟一件事。说需求、看改动、回一句确认，不碰终端的人也能用。</p>
+      </div>
+      <div class="col">
+        <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 4 7 20M17 4l-2 16M4 9h16M3 15h16"/></svg>
+        <h3>Discord</h3>
+        <p data-i18n="e2">一个频道对应一个项目，几条线同时推进，互不串台。</p>
+      </div>
+      <div class="col">
+        <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="m7 9 3 3-3 3m5 0h5"/></svg>
+        <h3>SSH</h3>
+        <p data-i18n="e3">终端直连，开 tmux 跑 Claude Code、测试和构建。断开再连，会话还在。</p>
+      </div>
+      <div class="col">
+        <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="4" width="20" height="13" rx="2"/><path d="M12 17v3m-4 0h8"/></svg>
+        <h3 data-i18n="e4t">远程桌面</h3>
+        <p data-i18n="e4">要看画面时打开它的桌面，用 Xcode、模拟器和浏览器。</p>
+      </div>
     </div>
-    <div class="map-fig" aria-label="话题与项目目录的对应示意">
-      <div class="map-row"><span class="chip"># 官网改版</span><i></i><code>~/projects/site</code><em class="busy">进行中</em></div>
-      <div class="map-row"><span class="chip"># shop-api</span><i></i><code>~/projects/shop-api</code><em class="wait">等你确认</em></div>
-      <div class="map-row"><span class="chip"># 数据周报</span><i></i><code>~/projects/weekly</code><em>已交付</em></div>
-      <div class="map-git"><span>每轮结束</span><i></i><code>git push → 你的 GitHub</code></div>
+
+    <div class="panel map">
+      <div class="map-copy">
+        <h3 data-i18n="mapTitle">每个话题，一个独立目录。</h3>
+        <p data-i18n="mapText">话题或频道和机器上的项目一一对应，各有自己的目录、会话和凭据。这边改官网，那边修接口，不会串。每轮做完，项目可以自动推到你自己的 GitHub。</p>
+      </div>
+      <div class="map-fig">
+        <div class="map-row"><span class="chip" data-i18n="map1">官网改版</span><i></i><code>~/projects/site</code><em class="busy" data-i18n="mapBusy">进行中</em></div>
+        <div class="map-row"><span class="chip">shop-api</span><i></i><code>~/projects/shop-api</code><em class="wait" data-i18n="mapWait">等你确认</em></div>
+        <div class="map-row"><span class="chip" data-i18n="map3">数据周报</span><i></i><code>~/projects/weekly</code><em data-i18n="mapDone">已交付</em></div>
+        <div class="map-row map-git"><span data-i18n="mapGit">每轮结束</span><i></i><code>git push → GitHub</code></div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ───────── 交付清单 ───────── -->
-<section class="sec sec-kit" id="kit">
-  <div class="sec-head">
-    <p class="kicker">03 · 你拿到什么</p>
-    <h2>不是一个账号，是一整套接好线的工作环境。</h2>
-  </div>
-  <div class="kit">
-    <figure class="kit-device">
-      <img src="device.webp" width="1040" height="735" alt="Mac mini 主机参考机型">
-      <figcaption>
-        <span>参考机型</span>
-        <b>Mac mini · Apple M4</b>
-        <dl><div><dt>内存</dt><dd>16 GB</dd></div><div><dt>存储</dt><dd>256 GB 起</dd></div><div><dt>归属</dt><dd>租期内独享</dd></div></dl>
-      </figcaption>
-    </figure>
-    <ul class="kit-list">
-      <li><b>专属主机</b><p>租期内整台归你用，不和别的客户混用。</p></li>
-      <li><b>Claude Code 装好即用</b><p>开发环境、常用工具链和 Claude Code 预装配好，用你自己的账号登录。</p></li>
-      <li><b>飞书 / Discord 接入</b><p>帮你把机器人接进你的飞书或 Discord，话题和项目一一对应。</p></li>
-      <li><b>持久项目目录</b><p>代码、依赖、日志、对话记录都留在主机，断开重连接着干。</p></li>
-      <li><b>SSH 与远程桌面</b><p>终端和图形界面两种直连方式，开通时一起配好。</p></li>
-      <li><b>GitHub 自动同步</b><p>每轮结束把项目推到你的仓库，成果不锁在主机里。</p></li>
-      <li><b>运维支持</b><p>主机、网络和环境出问题由我们处理，你只管派活。</p></li>
-      <li><b>干净退租</b><p>不续租时导出全部项目，撤销凭据，主机擦除后再交给下一位。</p></li>
-    </ul>
+<!-- 03 升档 -->
+<section class="sec" id="quota">
+  <div class="sec-in">
+    <p class="num">03</p>
+    <h2 data-i18n="s3Title">额度不够，<br>回一个字就行。</h2>
+    <p class="sec-sub" data-i18n="s3Sub">Claude 的用量按 5 小时和每周计算。快用完时它会在话题里问你，回「升」就换到更高一档，手上的活原地接着跑。</p>
+
+    <div class="panel quota">
+      <div class="chat-mock" aria-hidden="true">
+        <div class="cm-msg"><span class="cm-av" data-i18n="cmBotAv">台</span><div><b data-i18n="cmBot">工作台</b><p data-i18n="cmAsk">Pro 本周额度快用完了，还剩 5 页没改，等恢复要到周一。回「升」换到 Max，我接着改。</p></div></div>
+        <div class="cm-msg cm-me"><span class="cm-av" data-i18n="cmYouAv">你</span><div><b data-i18n="cmYou">你</b><p data-i18n="cmUp">升</p></div></div>
+        <div class="cm-sys" data-i18n="cmSys">已换到 Max · 项目和会话没动</div>
+        <div class="cm-msg"><span class="cm-av" data-i18n="cmBotAv">台</span><div><b data-i18n="cmBot">工作台</b><p data-i18n="cmDone">12 页都改完了，截图在这。</p></div></div>
+      </div>
+      <ol class="signals">
+        <li><span data-i18n="sig1t">Pro 够用</span><p data-i18n="sig1">一天派几件小事，很少看到额度提醒。</p></li>
+        <li><span data-i18n="sig2t">该升 Max</span><p data-i18n="sig2">一周不止一次碰到「额度用完，几小时后恢复」，或者开始让它跑全量测试、做大改动。</p></li>
+        <li><span data-i18n="sig3t">该升 Ultra</span><p data-i18n="sig3">两三个项目同时派活，或者夜里也在跑长任务，Max 的周额度撑不到周末。</p></li>
+      </ol>
+    </div>
   </div>
 </section>
 
-<!-- ───────── 月费 ───────── -->
+<!-- 04 配置 -->
+<section class="sec" id="kit">
+  <div class="sec-in">
+    <p class="num">04</p>
+    <h2 data-i18n="s4Title">到手就能开工。</h2>
+    <p class="sec-sub" data-i18n="s4Sub">开通时这些都已经配好，你登录自己的账号，就能派第一件活。</p>
+
+    <div class="panel kit">
+      <ul class="ready">
+        <li><span>Claude Code</span><em data-i18n="rdPre">预装</em></li>
+        <li><span data-i18n="rdFeishu">飞书机器人</span><em data-i18n="rdOn">已接入</em></li>
+        <li><span data-i18n="rdDiscord">Discord 机器人</span><em data-i18n="rdOn">已接入</em></li>
+        <li><span data-i18n="rdGit">GitHub 同步</span><em data-i18n="rdSet">已配置</em></li>
+        <li><span>SSH</span><em data-i18n="rdOpen">已开通</em></li>
+        <li><span data-i18n="e4t">远程桌面</span><em data-i18n="rdOpen">已开通</em></li>
+        <li><span data-i18n="rdOther">其他工具</span><em class="dim" data-i18n="rdAsk">按需安装</em></li>
+      </ul>
+      <dl class="specs">
+        <div><dt data-i18n="spModel">机型</dt><dd>Mac mini · Apple M4</dd></div>
+        <div><dt data-i18n="spMem">内存</dt><dd>16 GB</dd></div>
+        <div><dt data-i18n="spDisk">存储</dt><dd data-i18n="spDiskV">256 GB 起</dd></div>
+        <div><dt data-i18n="spOn">在线</dt><dd data-i18n="spOnV">24 小时，不关机</dd></div>
+        <div><dt data-i18n="spOwn">归属</dt><dd data-i18n="spOwnV">租期内整台独享</dd></div>
+        <div><dt data-i18n="spIn">入口</dt><dd data-i18n="spInV">飞书 · Discord · SSH · 远程桌面</dd></div>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<!-- 05 托管 -->
+<section class="sec" id="care">
+  <div class="sec-in">
+    <p class="num">05</p>
+    <h2 data-i18n="s5Title">机器我们管，<br>项目归你。</h2>
+    <p class="sec-sub" data-i18n="s5Sub">我们负责主机的上架、联网和日常运维，你只管派活。</p>
+    <div class="cols cols-4">
+      <div class="col">
+        <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>
+        <h3 data-i18n="c1t">整台独享</h3>
+        <p data-i18n="c1">一台 Mac 只租给一位客户，租期内不和别人共用。</p>
+      </div>
+      <div class="col">
+        <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.2L3 17.8V21h3.2l6.3-6.3a4 4 0 0 0 5.2-5.4l-2.5 2.5-2.3-.6-.6-2.3z"/></svg>
+        <h3 data-i18n="c2t">有人运维</h3>
+        <p data-i18n="c2">电源、网络和系统环境出了问题，由我们处理。</p>
+      </div>
+      <div class="col">
+        <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="6" cy="6" r="2.5"/><circle cx="6" cy="18" r="2.5"/><circle cx="18" cy="8" r="2.5"/><path d="M6 8.5v7M18 10.5c0 4-6 3-11 6"/></svg>
+        <h3 data-i18n="c3t">随时带走</h3>
+        <p data-i18n="c3">项目可以每轮同步到你自己的 GitHub，不锁在机器上。</p>
+      </div>
+      <div class="col">
+        <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13"/></svg>
+        <h3 data-i18n="c4t">退租抹除</h3>
+        <p data-i18n="c4">不续租时帮你导出项目、撤销凭据，再把整台机器抹干净。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 06 月费 -->
 <section class="sec" id="pricing">
-  <div class="sec-head sec-head-row">
-    <div>
-      <p class="kicker">04 · 月费</p>
-      <h2>一笔月费：主机 + 接入 + Claude 订阅。</h2>
-      <p class="sec-lead">各档用的是同样的主机和服务，区别只在 Claude 的用量额度。按额度折算，档位越高越划算。按月付，随时换档。</p>
+  <div class="sec-in">
+    <p class="num">06</p>
+    <div class="sec-head-row">
+      <div>
+        <h2 data-i18n="s6Title">一个月费，<br>三档额度。</h2>
+        <p class="sec-sub" data-i18n="s6Sub">主机、接入、运维和 Claude 订阅都包含在月费里。三档只差在额度，随时可以换。</p>
+      </div>
+      <div class="switch" role="tablist" data-i18n-attr="aria-label:planLabel" aria-label="方案类型">
+        <button role="tab" type="button" data-plan="personal" aria-selected="true" data-i18n="planPersonal">个人</button>
+        <button role="tab" type="button" data-plan="team" aria-selected="false" data-i18n="planTeam">团队</button>
+      </div>
     </div>
-    <div class="seg-switch" role="tablist" aria-label="方案类型">
-      <button role="tab" type="button" data-plan="personal" aria-selected="true">个人</button>
-      <button role="tab" type="button" data-plan="team" aria-selected="false">团队</button>
-    </div>
-  </div>
 
-  <div class="plans" id="plans-personal">
-    <label class="plan">
-      <input type="radio" name="tier" value="pro">
-      <span class="plan-name">Pro</span>
-      <span class="plan-price"><b>¥1,000</b><small>/ 月</small></span>
-      <span class="plan-fit">先试试看</span>
-      <span class="plan-desc">含 Claude Pro。每天零散派几件事：改页面、写脚本、读代码、整理资料。</span>
-      <span class="plan-unit">1 倍额度 · 每份 ¥1,000</span>
-    </label>
-    <label class="plan">
-      <input type="radio" name="tier" value="max" checked>
-      <span class="plan-flag">多数人选这档</span>
-      <span class="plan-name">Max</span>
-      <span class="plan-price"><b>¥2,500</b><small>/ 月</small></span>
-      <span class="plan-fit">每天都在用</span>
-      <span class="plan-desc">含 Claude Max，额度约为 Pro 的 5 倍。持续开发、反复调试、成天跑测试。</span>
-      <span class="plan-unit">约 5 倍额度 · 每份约 ¥500</span>
-    </label>
-    <label class="plan">
-      <input type="radio" name="tier" value="ultra">
-      <span class="plan-name">Ultra</span>
-      <span class="plan-price"><b>¥4,000</b><small>/ 月</small></span>
-      <span class="plan-fit">让它连轴转</span>
-      <span class="plan-desc">含 Claude Ultra，周额度约为 Pro 的 10 倍。几个项目同时跑、长任务一个接一个。</span>
-      <span class="plan-unit">约 10 倍额度 · 每份约 ¥400</span>
-    </label>
-  </div>
-
-  <div class="when" id="when-personal">
-    <h3>什么时候该升档？</h3>
-    <ol class="when-list">
-      <li><span class="plan-name">Pro 够用</span><p>一天派几件小事，很少看到额度提醒。</p></li>
-      <li><span class="plan-name">该升 Max</span><p>一周不止一次收到「额度用完，几小时后恢复」；或者开始让它跑全量测试、做大改动。</p></li>
-      <li><span class="plan-name">该升 Ultra</span><p>两三个项目同时派活，或者夜里也在跑长任务，Max 的周额度撑不到周末。</p></li>
-    </ol>
-    <p class="when-note">不用自己盯着：额度快用满时，它会在话题里提醒你。回一句「升」，当天生效，差价按当月剩余天数折算，项目和会话原地不动。</p>
-  </div>
-
-  <div class="plans plans-team" id="plans-team" hidden>
-    <div class="seat">
-      <div><span class="plan-name">Standard 席位</span><span class="plan-price"><b>¥1,000</b><small>/ 人 / 月</small></span><span class="plan-desc">日常使用 Claude Code 的成员。</span></div>
-      <div class="stepper"><button type="button" data-step="-1" data-for="standard" aria-label="减少一个 Standard 席位">−</button><input id="seat-standard" type="number" inputmode="numeric" min="0" max="150" value="2" aria-label="Standard 席位数"><button type="button" data-step="1" data-for="standard" aria-label="增加一个 Standard 席位">+</button></div>
+    <div class="plans" id="plans-personal">
+      <label class="plan">
+        <input type="radio" name="tier" value="pro">
+        <span class="plan-name">Pro</span>
+        <span class="plan-price"><b>¥1,000</b><small data-i18n="perMonth">/ 月</small></span>
+        <span class="plan-fit" data-i18n="proFit">零散用</span>
+        <span class="plan-desc" data-i18n="proDesc">每天派几件事：改页面、写脚本、读代码、整理资料。</span>
+        <span class="plan-unit" data-i18n="proUnit">基准额度</span>
+      </label>
+      <label class="plan">
+        <input type="radio" name="tier" value="max" checked>
+        <span class="plan-flag" data-i18n="maxFlag">常选</span>
+        <span class="plan-name">Max</span>
+        <span class="plan-price"><b>¥2,500</b><small data-i18n="perMonth">/ 月</small></span>
+        <span class="plan-fit" data-i18n="maxFit">每天都在用</span>
+        <span class="plan-desc" data-i18n="maxDesc">持续开发、反复调试、整天跑测试。</span>
+        <span class="plan-unit" data-i18n="maxUnit">额度约为 Pro 的 5 倍</span>
+      </label>
+      <label class="plan">
+        <input type="radio" name="tier" value="ultra">
+        <span class="plan-name">Ultra</span>
+        <span class="plan-price"><b>¥4,000</b><small data-i18n="perMonth">/ 月</small></span>
+        <span class="plan-fit" data-i18n="ultraFit">连轴转</span>
+        <span class="plan-desc" data-i18n="ultraDesc">几个项目同时跑，长任务一个接一个。</span>
+        <span class="plan-unit" data-i18n="ultraUnit">周额度约为 Pro 的 10 倍</span>
+      </label>
     </div>
-    <div class="seat">
-      <div><span class="plan-name">Premium 席位</span><span class="plan-price"><b>¥2,500</b><small>/ 人 / 月</small></span><span class="plan-desc">重度使用、需要更高额度的成员。</span></div>
-      <div class="stepper"><button type="button" data-step="-1" data-for="premium" aria-label="减少一个 Premium 席位">−</button><input id="seat-premium" type="number" inputmode="numeric" min="0" max="150" value="1" aria-label="Premium 席位数"><button type="button" data-step="1" data-for="premium" aria-label="增加一个 Premium 席位">+</button></div>
-    </div>
-    <p class="seat-note">同一组织 2–150 人，两种席位可以混搭。主机只归你们一家，成员各用各的登录和目录。</p>
-  </div>
 
-  <div class="bill">
-    <div class="bill-sum">
-      <span id="bill-label">个人 · Max</span>
-      <strong id="bill-total">¥2,500</strong>
-      <small id="bill-unit">每月，含主机、接入与 Claude Max 订阅</small>
-      <p class="bill-error" id="bill-error" role="status"></p>
+    <div class="plans plans-team" id="plans-team" hidden>
+      <div class="seat">
+        <div><span class="plan-name">Standard</span><span class="plan-price"><b>¥1,000</b><small data-i18n="perSeat">/ 人 / 月</small></span><span class="plan-desc" data-i18n="stdDesc">日常使用 Claude Code 的成员。</span></div>
+        <div class="stepper"><button type="button" data-step="-1" data-for="standard" data-i18n-attr="aria-label:stdMinus" aria-label="减少一个 Standard 席位">−</button><input id="seat-standard" type="number" inputmode="numeric" min="0" max="150" value="2" data-i18n-attr="aria-label:stdCount" aria-label="Standard 席位数"><button type="button" data-step="1" data-for="standard" data-i18n-attr="aria-label:stdPlus" aria-label="增加一个 Standard 席位">+</button></div>
+      </div>
+      <div class="seat">
+        <div><span class="plan-name">Premium</span><span class="plan-price"><b>¥2,500</b><small data-i18n="perSeat">/ 人 / 月</small></span><span class="plan-desc" data-i18n="preDesc">用得多、需要更高额度的成员。</span></div>
+        <div class="stepper"><button type="button" data-step="-1" data-for="premium" data-i18n-attr="aria-label:preMinus" aria-label="减少一个 Premium 席位">−</button><input id="seat-premium" type="number" inputmode="numeric" min="0" max="150" value="1" data-i18n-attr="aria-label:preCount" aria-label="Premium 席位数"><button type="button" data-step="1" data-for="premium" data-i18n-attr="aria-label:prePlus" aria-label="增加一个 Premium 席位">+</button></div>
+      </div>
+      <p class="seat-note" data-i18n="seatNote">同一组织 2–150 人，两种席位可以混搭。机器只归你们一家，成员各用各的登录和目录。</p>
     </div>
-    <ul class="bill-in">
-      <li>专属主机与持久项目目录</li>
-      <li>飞书 / Discord / SSH / 远程桌面接入</li>
-      <li>所选档位的 Claude 订阅</li>
-      <li>环境维护与故障处理</li>
-    </ul>
-    <a class="btn btn-ink" href="#pilot" id="bill-cta">用这个方案申请试点</a>
+
+    <div class="panel bill">
+      <div class="bill-sum">
+        <span id="bill-label"></span>
+        <strong id="bill-total"></strong>
+        <small id="bill-unit"></small>
+        <p class="bill-error" id="bill-error" role="status"></p>
+      </div>
+      <ul class="bill-in">
+        <li data-i18n="inc1">独享主机和项目目录</li>
+        <li data-i18n="inc2">飞书、Discord、SSH、远程桌面接入</li>
+        <li data-i18n="inc3">所选档位的 Claude 订阅</li>
+        <li data-i18n="inc4">运维和故障处理</li>
+        <li id="when-personal" data-i18n="inc5">额度用满可当天升档，差价按当月剩余天数折算</li>
+      </ul>
+      <a class="pill pill-light pill-block" href="#pilot" data-i18n="billCta">用这个方案申请</a>
+    </div>
+    <p class="fine" data-i18n="fine">订阅开在你本人（或你们组织）名下的 Claude 账号里，由你登录和保管，费用已包含在月费中。账号需要符合 Anthropic 的使用条款和支持地区，开通前一起确认。以上是试点价格，超出订阅额度的用量和另购的软件不包含在内。</p>
   </div>
-  <p class="fine">订阅开在你本人（或你们组织）名下的 Claude 账号里，由你登录和保管，费用已含在月费中。账号需符合 Anthropic 的服务地区与使用条款，开通前一起核对。以上为试点阶段价格，超出订阅额度的用量和另购软件不含在内。</p>
 </section>
 
-<!-- ───────── 试点 ───────── -->
-<section class="pilot" id="pilot">
-  <div class="pilot-in">
-    <div class="pilot-copy">
-      <p class="kicker">05 · 试点</p>
-      <h2>带一件真实的活来试。</h2>
-      <p class="sec-lead">首批只开 3–4 个机位，按月付，不用包年。用下来不合适，导出项目就走。</p>
+<!-- 07 试点 -->
+<section class="sec" id="pilot">
+  <div class="sec-in pilot">
+    <div>
+      <p class="num">07</p>
+      <h2 data-i18n="s7Title">带一件真实的活<br>来试。</h2>
+      <p class="sec-sub" data-i18n="s7Sub">首批 3–4 台，按月付，不用包年。用下来不合适，导出项目就走。</p>
       <ol class="steps">
-        <li><b>聊一次需求</b><p>说说你想交给它的第一件事，定入口和档位，核对账号条件。</p></li>
-        <li><b>开通与接入</b><p>我们备好主机、装好环境，把飞书或 Discord 接上，交给你登录。</p></li>
-        <li><b>跑通第一件事</b><p>从派活到拿回结果走一遍，再断开重连，确认项目都在。</p></li>
-        <li><b>月底你来定</b><p>续租、换档或退租。退租时导出项目、撤销凭据、擦除主机。</p></li>
+        <li><span>01</span><div><h3 data-i18n="st1t">聊一次</h3><p data-i18n="st1">说说你想交给它的第一件事，定入口和档位，确认账号条件。</p></div></li>
+        <li><span>02</span><div><h3 data-i18n="st2t">开通</h3><p data-i18n="st2">我们备好机器、装好环境、接上飞书或 Discord，交给你登录。</p></div></li>
+        <li><span>03</span><div><h3 data-i18n="st3t">跑通第一件事</h3><p data-i18n="st3">从派活到拿回结果走一遍，再断开重连，确认项目都在。</p></div></li>
+        <li><span>04</span><div><h3 data-i18n="st4t">月底你来定</h3><p data-i18n="st4">续租、换档，或者退租。</p></div></li>
       </ol>
     </div>
 
-    <form class="apply" id="apply" novalidate>
-      <h3>填一下，生成试点申请</h3>
-      <label class="field"><span>怎么称呼</span><input type="text" name="name" autocomplete="nickname" placeholder="名字或团队名" maxlength="40"></label>
-      <label class="field"><span>方案</span>
-        <select name="plan" id="apply-plan">
-          <option value="个人 · Pro（¥1,000 / 月）">个人 · Pro（¥1,000 / 月）</option>
-          <option value="个人 · Max（¥2,500 / 月）" selected>个人 · Max（¥2,500 / 月）</option>
-          <option value="个人 · Ultra（¥4,000 / 月）">个人 · Ultra（¥4,000 / 月）</option>
-          <option value="团队" id="apply-team">团队 · 2 Standard + 1 Premium（¥4,500 / 月）</option>
-        </select>
-      </label>
-      <fieldset class="field"><legend>想用的入口</legend>
+    <form class="panel apply" id="apply" novalidate>
+      <h3 data-i18n="fTitle">填一下，生成申请</h3>
+      <label class="field"><span data-i18n="fName">怎么称呼</span><input type="text" name="name" autocomplete="nickname" data-i18n-attr="placeholder:fNamePh" placeholder="名字或团队名" maxlength="40"></label>
+      <label class="field"><span data-i18n="fPlan">方案</span><select name="plan" id="apply-plan"></select></label>
+      <fieldset class="field"><legend data-i18n="fEntry">想用的入口</legend>
         <div class="checks">
-          <label><input type="checkbox" name="entry" value="飞书" checked><span>飞书</span></label>
-          <label><input type="checkbox" name="entry" value="Discord"><span>Discord</span></label>
-          <label><input type="checkbox" name="entry" value="SSH"><span>SSH</span></label>
-          <label><input type="checkbox" name="entry" value="远程桌面"><span>远程桌面</span></label>
+          <label><input type="checkbox" name="entry" value="feishu" checked><span data-i18n="feishu">飞书</span></label>
+          <label><input type="checkbox" name="entry" value="discord"><span>Discord</span></label>
+          <label><input type="checkbox" name="entry" value="ssh"><span>SSH</span></label>
+          <label><input type="checkbox" name="entry" value="desktop"><span data-i18n="e4t">远程桌面</span></label>
         </div>
       </fieldset>
-      <label class="field"><span>想交给它的第一件事</span><textarea name="task" rows="3" placeholder="比如：把公司官网从 WordPress 迁到静态站，每周自动出一份数据周报…" maxlength="400"></textarea></label>
-      <button class="btn btn-accent btn-block" type="submit">复制申请内容</button>
-      <p class="apply-hint" id="apply-hint" role="status">复制后，发给把这个页面转给你的人，我们会联系你。本页不收集、不上传任何信息。</p>
+      <label class="field"><span data-i18n="fTask">想交给它的第一件事</span><textarea name="task" rows="3" data-i18n-attr="placeholder:fTaskPh" placeholder="比如：把公司官网从 WordPress 迁到静态站；每周一自动出一份数据周报" maxlength="400"></textarea></label>
+      <button class="pill pill-light pill-block" type="submit" data-i18n="fSubmit">复制申请内容</button>
+      <p class="apply-hint" id="apply-hint" role="status" data-i18n="fHint">复制后发给把这个页面转给你的人，我们会联系你。本页不收集、不上传任何信息。</p>
       <pre class="apply-out" id="apply-out" hidden tabindex="0"></pre>
     </form>
   </div>
 </section>
 
-<!-- ───────── 问答 ───────── -->
+<!-- 08 问答 -->
 <section class="sec" id="faq">
-  <div class="sec-head">
-    <p class="kicker">06 · 问答</p>
-    <h2>下单前，大家都会问的几件事。</h2>
+  <div class="sec-in">
+    <p class="num">08</p>
+    <h2 data-i18n="s8Title">常见问题</h2>
+    <div class="faq">
+      <details><summary data-i18n="q1">Claude 账号是谁的？</summary><p data-i18n="a1">你的。订阅开在你本人名下，你自己登录、保管密码。账号需要符合 Anthropic 的使用条款和支持地区，开通前我们会一起确认。</p></details>
+      <details><summary data-i18n="q2">合上电脑，任务真的还在跑？</summary><p data-i18n="a2">在。任务跑在远端的 Mac 上，做完会在飞书或 Discord 的话题里通知你。用 SSH 的话，任务在 tmux 里，重新连上就能看到。需要你本人确认的操作，它会停下来等你。</p></details>
+      <details><summary data-i18n="q3">额度用满了怎么办？</summary><p data-i18n="a3">它会在话题里提醒你。可以等额度恢复，也可以回一句「升」，当天换到更高一档，差价按当月剩余天数折算，手上的活原地接着跑。</p></details>
+      <details><summary data-i18n="q4">账号出了问题，我的活会丢吗？</summary><p data-i18n="a4">不会。项目、上下文和飞书、Discord 接入都在机器上，也可以同步到你的 GitHub。账号处理好或者换一个接上，就从停下的地方继续。</p></details>
+      <details><summary data-i18n="q5">机器是独享的吗？</summary><p data-i18n="a5">个人方案一人一台。团队方案一家一台，成员各有自己的登录和目录。我们运维时只处理机器和环境，不看你的项目。</p></details>
+      <details><summary data-i18n="q6">能在上面做什么？</summary><p data-i18n="a6">软件开发、构建、测试和相关的自动化：写代码、做网站、跑脚本、处理数据、iOS 和 macOS 构建。如果主要是办公类的工作，告诉我们，可以换成 Windows 或 Ubuntu 主机。</p></details>
+      <details><summary data-i18n="q7">不想续了怎么办？</summary><p data-i18n="a7">按月付，到期不续就行。我们帮你导出项目，撤销机器人和各类凭据，再把机器彻底抹除。</p></details>
+      <details><summary data-i18n="q8">我不会写代码，能用吗？</summary><p data-i18n="a8">能。在飞书里像给同事发消息一样说清楚要什么，它做完把结果发回来，你看了再提修改。</p></details>
+    </div>
   </div>
-  <div class="faq">
-    <details open><summary>Claude 账号是谁的？</summary><p>你的。订阅开在你本人名下的账号里，由你登录、保管密码和恢复方式，订阅费用已含在月费中。我们不提供多人共用的账号。账号需要符合 Anthropic 的服务地区和使用条款，开通前会一起核对；平台对账号的限制和验证由平台决定，我们不做「保证不封」之类的承诺。</p></details>
-    <details><summary>合上电脑、断了网，任务真的还在跑吗？</summary><p>在。任务运行在远端主机上，和你手里的设备无关。你断开之后它继续做，做完把结果发到飞书或 Discord 的话题里；用 SSH 的话，任务挂在 tmux 会话里，重新连上就能看到。遇到必须你本人确认的操作（比如授权、登录），它会停下来等你。</p></details>
-    <details><summary>主机是独享的吗？别人看得到我的代码吗？</summary><p>个人方案一人一台，租期内不与其他客户共用。团队方案的主机只归你们组织，成员各有自己的登录和目录。我们做运维时只处理主机和环境问题，不翻项目内容。</p></details>
-    <details><summary>能在上面做什么？</summary><p>主机是 Mac，按 Apple 的系统许可用于软件开发、构建、测试和相关自动化：写代码、做网站和小程序、跑脚本和数据处理、iOS / macOS 构建等。如果你主要是做通用办公或图形软件类的工作，告诉我们，可以另配 Windows 或 Ubuntu 主机。</p></details>
-    <details><summary>不想续了，我的东西怎么办？</summary><p>项目可以全程自动同步到你自己的 GitHub，所以成果一直在你手里。退租时我们协助导出主机上的全部项目，撤销机器人和各类凭据，把主机擦除干净后才会再分配。</p></details>
-    <details><summary>额度用满了会怎样？</summary><p>Claude 的额度按 5 小时和每周计算，用满后要等它恢复。快用满时，它会在话题里提醒你，告诉你手上的活还差多少。你可以等额度恢复，也可以回一句「升」，当天换到更高一档，正在做的任务原地接着跑，项目和上下文都不动。差价按当月剩余天数折算。</p></details>
-    <details><summary>账号出了问题，我的活会丢吗？</summary><p>不会。项目、代码、对话上下文和飞书 / Discord 接入都在主机上，并且可以每轮同步到你自己的 GitHub，跟账号是分开的。账号需要处理时，处理好之后，或者换一个账号、换一个模型接上，就能从上次停下的地方继续。</p></details>
-    <details><summary>怎么付费？中途能换档吗？</summary><p>按月付，目前不做包年。个人方案可以在 Pro、Max、Ultra 之间随时换档，主机、项目和入口都不变。主机故障时的补时与退款规则会写进开通确认单，首次付款前逐条和你确认。</p></details>
-    <details><summary>我不会写代码，能用吗？</summary><p>能。飞书入口就是为此准备的：像给同事发消息一样说清楚要什么，它做完把结果发回来，你看了再提修改。终端和远程桌面是给想自己动手的人留的。</p></details>
+</section>
+
+<section class="closing">
+  <div class="sec-in">
+    <h2 data-i18n="endTitle">给你的项目，<br>找一台不关机的 Mac。</h2>
+    <a class="pill pill-light" href="#pilot" data-i18n="ctaTop">申请试点</a>
   </div>
 </section>
 
 </main>
 
 <footer class="foot">
-  <div class="foot-in">
-    <a class="brand" href="#top"><span class="brand-mark" aria-hidden="true"><i></i></span>远程 AI 工作台</a>
-    <p>试点阶段。页面所列价格与配置为试点方案，以开通确认单为准。Claude、Claude Code 是 Anthropic 的产品；Mac、macOS 是 Apple 的商标；飞书、Discord 归各自所有者。本服务与上述公司无隶属关系。</p>
-    <a class="foot-top" href="#top">回到顶部 ↑</a>
+  <div class="sec-in foot-in">
+    <a class="brand" href="#top"><span class="brand-mark" aria-hidden="true"><i></i></span><span data-i18n="brand">远程 AI 工作台</span></a>
+    <p data-i18n="footText">试点阶段，价格和配置以开通确认单为准。Claude、Claude Code 是 Anthropic 的产品，Mac、macOS 是 Apple 的商标，飞书、Discord 归各自所有者。本服务与以上公司没有隶属关系。</p>
   </div>
 </footer>
-<noscript><p class="noscript">演示、价格计算和申请生成需要启用 JavaScript；其余内容可直接阅读。</p></noscript>
+<noscript><p class="noscript">演示、月费计算和申请生成需要开启 JavaScript，其他内容可以直接阅读。</p></noscript>
 </body>
 </html>
