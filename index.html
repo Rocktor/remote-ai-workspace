@@ -24,9 +24,10 @@
     }
   })();
 </script>
-<link rel="stylesheet" href="style.css?v=3">
-<script defer src="i18n.js?v=3"></script>
-<script defer src="app.js?v=3"></script>
+<link rel="stylesheet" href="style.css?v=4">
+<script defer src="i18n.js?v=4"></script>
+<script defer src="app.js?v=4"></script>
+<script defer src="flow.js?v=4"></script>
 </head>
 <body>
 <a class="skip" href="#demo" data-i18n="skip">跳到演示</a>
@@ -59,18 +60,43 @@
       <a class="pill pill-light pill-split" href="#pilot"><span data-i18n="heroCta">申请试点</span><span class="pill-price" data-i18n="heroPrice">¥1,000/月起</span></a>
       <p class="hero-note" data-i18n="heroNote">首批名额有限，按申请先后开通。</p>
     </div>
-    <div class="hero-visual">
-      <div class="glow" aria-hidden="true"></div>
-      <img class="device" src="device.webp" width="1040" height="735" data-i18n-attr="alt:deviceAlt" alt="Mac mini 主机">
-      <div class="status-card" aria-hidden="true">
-        <div class="sc-head"><span class="dot"></span><b>mac-07</b><span class="sc-up" data-i18n="scUp">已连续开机 12 天</span></div>
-        <ul>
-          <li><span>Claude Code</span><em data-i18n="scRow1">正在跑测试</em></li>
-          <li><span data-i18n="feishu">飞书</span><em data-i18n="scRow2">3 个话题</em></li>
-          <li><span>Discord</span><em data-i18n="scRow3">2 个频道</em></li>
-        </ul>
+    <figure class="hero-visual flow-wrap">
+      <figcaption class="flow-cap"><span data-i18n="flowCap">工作原理</span><span class="flow-cap-r"><span class="dot" aria-hidden="true"></span>24 × 7</span></figcaption>
+      <div class="flow" id="flow" role="img" data-i18n-attr="aria-label:flowLabel" aria-label="工作原理：你从飞书、Discord、SSH 或远程桌面派活，专属 Mac 上的 Claude Code 开工，结果推到你的 GitHub 仓库，再把链接发回给你。">
+        <svg class="flow-svg" id="flow-svg" aria-hidden="true"></svg>
+        <div class="fnode fn-you" data-node="you" aria-hidden="true">
+          <div class="fn-head">
+            <svg class="fn-ic" viewBox="0 0 24 24"><rect x="6" y="2.5" width="12" height="19" rx="3"/><path d="M10.5 18.5h3"/></svg>
+            <b data-i18n="fnYou">你</b><small data-i18n="fnYouSub">手机或电脑</small>
+          </div>
+          <div class="fn-chips"><span data-entry="feishu" class="on" data-i18n="feishu">飞书</span><span data-entry="discord">Discord</span><span data-entry="ssh">SSH</span><span data-entry="desktop" data-i18n="fnDesk">远程桌面</span></div>
+          <p class="fn-line" id="fn-you">「登录页报错，修一下」</p>
+        </div>
+        <div class="fnode fn-mac" data-node="mac" aria-hidden="true">
+          <img class="fn-device" src="device.webp" width="1040" height="735" alt="">
+          <div class="fn-body">
+            <div class="fn-head"><span class="dot"></span><b>mac-07</b><small>Claude Code</small></div>
+            <p class="fn-line mono" id="fn-mac">测试 24/24 通过 ✓</p>
+          </div>
+        </div>
+        <div class="fnode fn-git" data-node="git" aria-hidden="true">
+          <div class="fn-head">
+            <svg class="fn-ic" viewBox="0 0 24 24"><circle cx="6" cy="5" r="2.2"/><circle cx="6" cy="19" r="2.2"/><circle cx="18" cy="8" r="2.2"/><path d="M6 7.2v9.6M18 10.2c0 4-6 3.5-11 7"/></svg>
+            <b>GitHub</b><small data-i18n="fnGitSub">你的仓库</small>
+          </div>
+          <p class="fn-line mono" id="fn-git">PR #42 已开</p>
+        </div>
+        <span class="flow-tag" data-edge="0" aria-hidden="true" data-i18n="ftSend">派活</span>
+        <span class="flow-tag" data-edge="1" aria-hidden="true">git push</span>
+        <span class="flow-tag" data-edge="2" aria-hidden="true" data-i18n="ftBack">PR 链接</span>
       </div>
-    </div>
+      <ol class="flow-steps" aria-hidden="true">
+        <li data-step="0"><i>1</i><span data-i18n="fs1">你派活</span></li>
+        <li data-step="1"><i>2</i><span data-i18n="fs2">Mac 上开工</span></li>
+        <li data-step="2"><i>3</i><span data-i18n="fs3">推到 GitHub</span></li>
+        <li data-step="3"><i>4</i><span data-i18n="fs4">回到你手上</span></li>
+      </ol>
+    </figure>
   </div>
 </section>
 

@@ -14,8 +14,11 @@
     heroSub: 'A Mac mini that stays on around the clock, with Claude Code installed and connected to your Feishu and Discord. Send a message and it gets to work.',
     heroCta: 'Join the pilot', heroPrice: 'from ¥1,000/mo',
     heroNote: 'The first batch is small. Machines are set up in the order requests come in.',
-    deviceAlt: 'Mac mini host',
-    scUp: 'up 12 days', scRow1: 'running tests', scRow2: '3 threads', scRow3: '2 channels',
+    flowCap: 'How it works',
+    flowLabel: 'How it works: you send a job from Feishu, Discord, SSH or remote desktop, Claude Code gets to work on your dedicated Mac, the result is pushed to your GitHub repository, and the link comes back to you.',
+    fnYou: 'You', fnYouSub: 'any device', fnDesk: 'Desktop', fnGitSub: 'your repo',
+    ftSend: 'task', ftBack: 'PR link',
+    fs1: 'You send a job', fs2: 'The Mac gets to work', fs3: 'Pushed to GitHub', fs4: 'Back to you',
     feishu: 'Feishu',
 
     s1Title: 'Close your laptop.<br>The work keeps going.',
