@@ -106,7 +106,7 @@
         if (view === 'sample' && !embed.firstElementChild) {
           const frame = document.createElement('iframe');
           frame.title = item.sampleLabel || (item.name + '成品预览');
-          frame.setAttribute('sandbox', 'allow-scripts allow-downloads');
+          frame.setAttribute('sandbox', 'allow-scripts allow-downloads allow-forms');
           frame.src = item.sample;
           embed.append(frame);
         }

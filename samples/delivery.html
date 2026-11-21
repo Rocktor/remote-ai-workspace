@@ -23,5 +23,10 @@ for (const button of controls) {
     for (const candidate of controls) candidate.setAttribute('aria-pressed', String(candidate === button));
   });
 }
-document.getElementById('print').addEventListener('click', () => window.print());
+const printButton = document.getElementById('print');
+if (window.self === window.top) {
+  printButton.addEventListener('click', () => window.print());
+} else {
+  printButton.replaceWith(document.createTextNode('需打印时，请打开独立样例。'));
+}
 </script></body></html>
