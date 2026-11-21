@@ -59,6 +59,24 @@
         { term: 'cmd', text: 'ssh you@mac-07 -t tmux attach -t upgrade', needOpen: true },
         { term: 'good', text: '✔ 148/148 通过 · 已提交 a41c9e2 · 等你 review', needOpen: true, wait: 600 }
       ]
+    },
+    upgrade: {
+      title: '话题 · 官网改版', cwd: '~/projects/site', app: '飞书', bot: '工作台',
+      steps: [
+        { chat: 'me', t: '16:02', text: '官网 12 个页面都按新设计稿改一遍，改完把全站截图发我。', needOpen: true },
+        { chat: 'bot', t: '16:02', text: '收到，从首页开始。', wait: 900 },
+        { log: '读设计稿，拆出 12 个页面的改动', t: '16:03' },
+        { lid: 'close', wait: 1300 },
+        { log: '改完 7 / 12 页', t: '16:41' },
+        { log: 'Pro 本周额度已用 96%', t: '16:47', warn: true },
+        { chat: 'bot', t: '16:48', ask: true, text: '⚠️ Pro 本周额度快用完了，还剩 5 页没改，等额度恢复要到周一。回「升」换到 Max，当天生效，我接着改。', wait: 2600 },
+        { lid: 'open', wait: 1400 },
+        { chat: 'me', t: '16:51', text: '升', needOpen: true },
+        { log: '已换到 Max · 项目、会话、进度原地不动', t: '16:52' },
+        { log: '改完 12 / 12 页，全站截图', t: '17:36' },
+        { log: '提交「官网改版」并推送', t: '17:39' },
+        { chat: 'bot', t: '17:40', final: true, text: '✅ 12 页全部改完，截图在这。中途换到了 Max，进度一点没丢。', files: ['全站截图.zip', '预览链接'] }
+      ]
     }
   };
 
@@ -88,7 +106,7 @@
     const m = el('div', 'msg ' + (me ? 'me' : 'bot'));
     m.innerHTML = `<span class="msg-av">${me ? '你' : '台'}</span><div><div class="msg-meta"><b>${me ? '你' : scene.bot}</b><span>${step.t}</span></div><div class="msg-text">${esc(step.text)}</div>${step.files ? '<div class="msg-files">' + step.files.map(f => `<span>${esc(f)}</span>`).join('') + '</div>' : ''}</div>`;
     feed.append(m); scrollEnd(feed);
-    if (step.final && demo.closed) {
+    if ((step.final || step.ask) && demo.closed) {
       notify.innerHTML = `<div class="notify-app"><span>${scene.app} · 刚刚</span><span>${step.t}</span></div><b>${esc(scene.title)}</b><p>${esc(step.text)}</p>`;
       notify.classList.add('show');
     }
@@ -97,9 +115,9 @@
   function addLog(step) {
     const prev = log.querySelector('.lline:not(.done)'); if (prev) prev.classList.add('done');
     $('.log-empty', log)?.remove();
-    const l = el('div', 'lline', `<time>${step.t}</time><i class="mark"></i><span>${esc(step.log)}</span>`);
+    const l = el('div', 'lline' + (step.warn ? ' warn' : ''), `<time>${step.t}</time><i class="mark"></i><span>${esc(step.log)}</span>`);
     log.append(l); scrollEnd(log);
-    $('#box-state').textContent = '正在处理';
+    $('#box-state').textContent = step.warn ? '额度快用满' : '正在处理';
     if (step.final) finishLog();
   }
   function finishLog() {
@@ -108,7 +126,11 @@
   }
 
   function apply(scene, step) {
-    if (step.chat) { if (step.final) finishLog(); addChat(scene, step); }
+    if (step.chat) {
+      if (step.final) finishLog();
+      if (step.ask) { $$('.lline', log).forEach(l => l.classList.add('done')); $('#box-state').textContent = '等你回复'; }
+      addChat(scene, step);
+    }
     else if (step.term) addTerm(step);
     else if (step.log) addLog(step);
     else if (step.lid && !demo.manual) setLid(step.lid === 'close');
@@ -131,7 +153,7 @@
 
   function start(key) {
     clearTimeout(demo.timer);
-    Object.assign(demo, { key, i: 0, manual: false, waiting: false, done: false });
+    Object.assign(demo, { key, i: 0, manual: false, waiting: false, done: false, run: demo.run + 1 });
     const scene = SCENES[key];
     feed.innerHTML = ''; feed.classList.toggle('term', !!scene.term);
     log.innerHTML = '<div class="log-empty">等待任务…</div>';
@@ -161,8 +183,9 @@
   setInterval(() => { up++; const d = Math.floor(up / 86400), r = up % 86400; upEl.textContent = `${d} 天 ${pad(Math.floor(r / 3600))}:${pad(Math.floor(r % 3600 / 60))}:${pad(r % 60)}`; }, 1000);
 
   // 进入视口再开播，离开标签页暂停不处理（脚本很短）
-  const stage = $('#demo'); let started = false;
-  const go = () => { if (started) return; started = true; start('feishu'); if (!reduced) setTimeout(() => !demo.manual && lidBtn.classList.add('nudge'), 9000); };
+  const stage = $('#demo');
+  // 访客已经点过某个场景，就不再用默认场景覆盖
+  const go = () => { if (demo.run) return; start('feishu'); if (!reduced) setTimeout(() => !demo.manual && lidBtn.classList.add('nudge'), 9000); };
   if ('IntersectionObserver' in window) {
     const io = new IntersectionObserver(es => { if (es.some(e => e.isIntersecting)) { io.disconnect(); go(); } }, { threshold: .25 });
     io.observe(stage);
@@ -204,6 +227,7 @@
     $$('.seg-switch button').forEach(b => b.setAttribute('aria-selected', String(b.dataset.plan === plan)));
     $('#plans-personal').hidden = plan !== 'personal';
     $('#plans-team').hidden = plan !== 'team';
+    $('#when-personal').hidden = plan !== 'personal';
     renderBill();
   }
   $$('.seg-switch button').forEach(b => b.addEventListener('click', () => setPlan(b.dataset.plan)));

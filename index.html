@@ -10,8 +10,8 @@
 <meta property="og:type" content="website">
 <title>远程 AI 工作台 · 发条消息，有台 Mac 替你开工</title>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2315140F'/%3E%3Ccircle cx='22' cy='21' r='3' fill='%2334D17F'/%3E%3Crect x='7' y='9' width='12' height='3' rx='1.5' fill='%23F2EFE6'/%3E%3C/svg%3E">
-<link rel="stylesheet" href="style.css?v=1">
-<script defer src="app.js?v=1"></script>
+<link rel="stylesheet" href="style.css?v=2">
+<script defer src="app.js?v=2"></script>
 </head>
 <body>
 <a class="skip" href="#demo">跳到演示</a>
@@ -35,7 +35,7 @@
   <div class="hero-head">
     <h1>发条消息，<br>有台 Mac <em>替你开工</em>。</h1>
     <div class="hero-side">
-      <p class="lead">一台 24 小时在线的专属 Mac，装好 Claude Code，接进你的飞书和 Discord。在话题里交代任务，合上电脑，它接着做，做完在话题里叫你。</p>
+      <p class="lead">一台 24 小时在线的专属 Mac，装好 Claude Code，接进你的飞书和 Discord。在话题里交代任务，合上电脑，它接着做，做完在话题里叫你。开通当天就能派活。</p>
       <div class="hero-cta">
         <a class="btn btn-accent" href="#pilot">申请试点机位</a>
         <a class="btn btn-ghost" href="#pricing">看月费 <span aria-hidden="true">↓</span></a>
@@ -46,9 +46,10 @@
   <div class="stage" id="demo" aria-label="工作台演示">
     <div class="stage-bar">
       <div class="tabs" role="tablist" aria-label="选择入口">
-        <button role="tab" type="button" data-scene="feishu" aria-selected="true">飞书话题</button>
-        <button role="tab" type="button" data-scene="discord" aria-selected="false">Discord 频道</button>
-        <button role="tab" type="button" data-scene="ssh" aria-selected="false">SSH 终端</button>
+        <button role="tab" type="button" data-scene="feishu" aria-selected="true">飞书</button>
+        <button role="tab" type="button" data-scene="discord" aria-selected="false">Discord</button>
+        <button role="tab" type="button" data-scene="ssh" aria-selected="false">SSH</button>
+        <button role="tab" type="button" data-scene="upgrade" aria-selected="false">额度用满</button>
       </div>
       <button class="replay" type="button" id="replay"><span aria-hidden="true">↻</span> 重播</button>
     </div>
@@ -86,10 +87,10 @@
   </div>
 
   <ul class="plate" aria-label="基本信息">
-    <li><b>24 小时</b><span>主机一直在线，任务在后台跑</span></li>
-    <li><b>一人一台</b><span>Mac mini M4 · 16 GB · 256 GB 起</span></li>
-    <li><b>四个入口</b><span>飞书 · Discord · SSH · 远程桌面</span></li>
-    <li><b>按月付</b><span>¥1,000 起，含 Claude 订阅</span></li>
+    <li><b>活不会断</b><span>主机 24 小时在线，合上电脑它照样干</span></li>
+    <li><b>进度不丢</b><span>换设备、换档、换账号，项目和上下文都在</span></li>
+    <li><b>当天派活</b><span>Claude Code、飞书、Discord 全部配好</span></li>
+    <li><b>额度随时加</b><span>¥1,000 起，用满一句话升档</span></li>
   </ul>
 </section>
 
@@ -104,6 +105,8 @@
     <div class="swap-row"><p>合上电脑、断一下网，跑到一半的任务就停了。</p><p><b>主机一直在线。</b>任务在后台接着跑，你出门、开会、睡觉都不耽误。</p></div>
     <div class="swap-row"><p>换台设备，环境、依赖、上下文全部重来。</p><p><b>项目住在主机上。</b>代码、依赖、日志、对话记录都在，从哪台设备进来都接着上次。</p></div>
     <div class="swap-row"><p>人得守在终端前，等它问一句、点一下确认。</p><p><b>它做完来找你。</b>在飞书或 Discord 里派活，结果、文件和链接直接发回话题。</p></div>
+    <div class="swap-row"><p>账号出了问题，项目、对话上下文跟着一起没了。</p><p><b>账号和活是分开的。</b>项目、上下文、飞书接入都留在主机上，账号或模型换一个，接着上次往下干。</p></div>
+    <div class="swap-row"><p>额度用完只能干等，几个小时甚至几天后才恢复。</p><p><b>额度不够就升档。</b>它会在话题里提醒你，回一句「升」，当天换到更高档，任务原地继续。</p></div>
   </div>
 
   <div class="day" aria-label="一天 24 小时里，你的电脑和工作台各自在线的时间">
@@ -223,7 +226,7 @@
     <div>
       <p class="kicker">04 · 月费</p>
       <h2>一笔月费：主机 + 接入 + Claude 订阅。</h2>
-      <p class="sec-lead">各档用的是同样的主机和服务，区别只在 Claude 的用量额度。按月付，随时可以换档。</p>
+      <p class="sec-lead">各档用的是同样的主机和服务，区别只在 Claude 的用量额度。按额度折算，档位越高越划算。按月付，随时换档。</p>
     </div>
     <div class="seg-switch" role="tablist" aria-label="方案类型">
       <button role="tab" type="button" data-plan="personal" aria-selected="true">个人</button>
@@ -238,6 +241,7 @@
       <span class="plan-price"><b>¥1,000</b><small>/ 月</small></span>
       <span class="plan-fit">先试试看</span>
       <span class="plan-desc">含 Claude Pro。每天零散派几件事：改页面、写脚本、读代码、整理资料。</span>
+      <span class="plan-unit">1 倍额度 · 每份 ¥1,000</span>
     </label>
     <label class="plan">
       <input type="radio" name="tier" value="max" checked>
@@ -246,6 +250,7 @@
       <span class="plan-price"><b>¥2,500</b><small>/ 月</small></span>
       <span class="plan-fit">每天都在用</span>
       <span class="plan-desc">含 Claude Max，额度约为 Pro 的 5 倍。持续开发、反复调试、成天跑测试。</span>
+      <span class="plan-unit">约 5 倍额度 · 每份约 ¥500</span>
     </label>
     <label class="plan">
       <input type="radio" name="tier" value="ultra">
@@ -253,7 +258,18 @@
       <span class="plan-price"><b>¥4,000</b><small>/ 月</small></span>
       <span class="plan-fit">让它连轴转</span>
       <span class="plan-desc">含 Claude Ultra，周额度约为 Pro 的 10 倍。几个项目同时跑、长任务一个接一个。</span>
+      <span class="plan-unit">约 10 倍额度 · 每份约 ¥400</span>
     </label>
+  </div>
+
+  <div class="when" id="when-personal">
+    <h3>什么时候该升档？</h3>
+    <ol class="when-list">
+      <li><span class="plan-name">Pro 够用</span><p>一天派几件小事，很少看到额度提醒。</p></li>
+      <li><span class="plan-name">该升 Max</span><p>一周不止一次收到「额度用完，几小时后恢复」；或者开始让它跑全量测试、做大改动。</p></li>
+      <li><span class="plan-name">该升 Ultra</span><p>两三个项目同时派活，或者夜里也在跑长任务，Max 的周额度撑不到周末。</p></li>
+    </ol>
+    <p class="when-note">不用自己盯着：额度快用满时，它会在话题里提醒你。回一句「升」，当天生效，差价按当月剩余天数折算，项目和会话原地不动。</p>
   </div>
 
   <div class="plans plans-team" id="plans-team" hidden>
@@ -340,7 +356,9 @@
     <details><summary>主机是独享的吗？别人看得到我的代码吗？</summary><p>个人方案一人一台，租期内不与其他客户共用。团队方案的主机只归你们组织，成员各有自己的登录和目录。我们做运维时只处理主机和环境问题，不翻项目内容。</p></details>
     <details><summary>能在上面做什么？</summary><p>主机是 Mac，按 Apple 的系统许可用于软件开发、构建、测试和相关自动化：写代码、做网站和小程序、跑脚本和数据处理、iOS / macOS 构建等。如果你主要是做通用办公或图形软件类的工作，告诉我们，可以另配 Windows 或 Ubuntu 主机。</p></details>
     <details><summary>不想续了，我的东西怎么办？</summary><p>项目可以全程自动同步到你自己的 GitHub，所以成果一直在你手里。退租时我们协助导出主机上的全部项目，撤销机器人和各类凭据，把主机擦除干净后才会再分配。</p></details>
-    <details><summary>怎么付费？中途能换档吗？</summary><p>按月付，目前不做包年。个人方案可以在 Pro、Max、Ultra 之间换档，主机、项目和入口都不变。主机故障时的补时与退款规则会写进开通确认单，首次付款前逐条和你确认。</p></details>
+    <details><summary>额度用满了会怎样？</summary><p>Claude 的额度按 5 小时和每周计算，用满后要等它恢复。快用满时，它会在话题里提醒你，告诉你手上的活还差多少。你可以等额度恢复，也可以回一句「升」，当天换到更高一档，正在做的任务原地接着跑，项目和上下文都不动。差价按当月剩余天数折算。</p></details>
+    <details><summary>账号出了问题，我的活会丢吗？</summary><p>不会。项目、代码、对话上下文和飞书 / Discord 接入都在主机上，并且可以每轮同步到你自己的 GitHub，跟账号是分开的。账号需要处理时，处理好之后，或者换一个账号、换一个模型接上，就能从上次停下的地方继续。</p></details>
+    <details><summary>怎么付费？中途能换档吗？</summary><p>按月付，目前不做包年。个人方案可以在 Pro、Max、Ultra 之间随时换档，主机、项目和入口都不变。主机故障时的补时与退款规则会写进开通确认单，首次付款前逐条和你确认。</p></details>
     <details><summary>我不会写代码，能用吗？</summary><p>能。飞书入口就是为此准备的：像给同事发消息一样说清楚要什么，它做完把结果发回来，你看了再提修改。终端和远程桌面是给想自己动手的人留的。</p></details>
   </div>
 </section>
