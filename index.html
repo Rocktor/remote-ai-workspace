@@ -30,14 +30,14 @@
             <div class="horizon" aria-hidden="true"></div>
             <img src="./device.webp" width="1040" height="735" alt="银色 Mac mini 参考机型的原创示意图" fetchpriority="high">
           </div>
-          <figcaption><span><span class="cross" aria-hidden="true">+</span> Mac mini <b>/</b> M4</span><span>参考机型示意</span></figcaption>
+          <figcaption><span><span class="cross" aria-hidden="true">+</span> Mac mini <b>/</b> M4</span><span>开发专机示意</span></figcaption>
         </figure>
       </div>
     </section>
     <section id="workflow" class="workflow wrap" aria-labelledby="work-title">
       <header class="section-head">
         <div><p class="eyebrow">三种使用方式</p><h2 id="work-title">从你熟悉的地方开始。</h2></div>
-        <p>可以从一个小项目试起。切换下面的入口，看看怎样交代任务，以及最后能拿到什么。</p>
+        <p>聊天协作和通用办公拟采用具备相应许可的通用主机。开发项目另有 Mac 独享专机候选。选一个入口，看看能交付什么。</p>
       </header>
       <fieldset class="demo">
         <legend class="sr">按使用入口查看交付示例</legend>
@@ -53,9 +53,9 @@
           <div class="screen-head"><span class="lights" aria-hidden="true"><i></i><i></i><i></i></span><span>工作台 · 场景示例</span></div>
           <div class="scenes">
             <div class="scene panel-a">
-              <h3>在飞书话题里，把资料交给助手。</h3>
-              <p>一个飞书话题对应一个会话，Discord 的一个文字频道对应一个会话。回到原处补充要求，助手沿用这段对话的上下文。</p>
-              <div class="receipt"><span>一次交付示例</span><p>上传会议材料，要求整理本周行动项。你收到一份可编辑的清单，能逐条核对负责人和截止日期。</p></div>
+              <h3>接一单工作，把来回确认留在同一处。</h3>
+              <p>一个飞书话题对应一个会话，Discord 的一个文字频道对应一个会话。先请客户写下要求。有变更时，把具体改动贴回原处，请客户回复确认。</p>
+              <div class="receipt"><span>试点验收示例 · 接单留痕</span><p>把初稿标为 V1，修改后的交付文件标为 V2，请客户在同一处回复验收。结单时，双方能找回原始要求、变更确认、对应版本、交付文件和验收回复。</p></div>
             </div>
             <div class="scene panel-b">
               <h3>SSH 连入工作台，把改动留在自己的仓库。</h3>
@@ -83,8 +83,8 @@
           <p class="price-note">仅为主机费用意向。模型订阅、API 用量与商业软件许可分别核算。</p>
         </div>
         <dl class="spec-list config-list">
-          <div><dt>Mac 参考配置</dt><dd>Mac mini M4 <small>16 GB 内存 · 256 GB 或以上存储</small></dd></div>
-          <div><dt>通用主机候选</dt><dd>4 核 · 16 GB <small>Windows 或 Ubuntu，按应用兼容性选择</small></dd></div>
+          <div><dt>Mac 开发专机</dt><dd>Mac mini M4 <small>16 GB 内存 · 256 GB 或以上存储。客户整机独享，用于许可范围内的软件开发、构建和测试。</small></dd></div>
+          <div><dt>通用主机候选</dt><dd>4 核 · 16 GB <small>聊天和通用办公拟选 Windows 或 Ubuntu，需先确认托管、远程访问及应用许可。</small></dd></div>
           <div><dt>开发工具</dt><dd>Claude Code、Codex <small>按需配置，使用本人自有或获授权的订阅</small></dd></div>
         </dl>
       </div>
@@ -97,7 +97,8 @@
         <li><h3>退出时带走</h3><p>先导出文件和日志，或把代码交回已授权的仓库。确认收齐后，撤销密钥及第三方授权，按约定期限清理工作区。</p></li>
       </ol>
       <div class="faq">
-        <details open><summary>不同聊天会话之间，谁能看到项目文件？</summary><p>话题或频道只划分对话上下文。文件、仓库和凭据的可见范围由系统用户与项目授权决定。试点应先确定整机独享，或为不同使用者分配独立系统用户。采用后者时，需用两组身份实际验证交叉访问会被拒绝。渠道里的成员权限也要单独核对。</p></details>
+        <details open><summary>不同聊天会话之间，谁能看到项目文件？</summary><p>话题或频道只划分对话上下文。文件、仓库和凭据的可见范围由系统用户与项目授权决定。Mac 开发专机由一个客户独享。通用主机仅在相应许可允许时考虑分设系统用户，并用两组身份实测项目间不得互访。聊天渠道的成员权限也要单独核对。</p></details>
+        <details><summary>哪些项目适合申请 Mac 开发专机？</summary><p>例如从源码构建应用、运行开发期自动化测试。以 macOS Tahoe 26 许可第 3 节为例，适用的开发服务租赁每次至少连续 24 小时，最终承租客户须独占使用和控制整机及系统。启动前还须核对实际安装版本与托管许可、履行对 Apple 的预先通知，并确认客户接受适用条款。<a href="https://www.apple.com/legal/sla/docs/macOSTahoe.pdf#page=6"><u>Apple 许可原文（PDF，第 3 节）</u></a></p></details>
         <details><summary>订阅和账号由谁提供？</summary><p>个人试点由使用者提供自己的账号或明确获授权的订阅，并遵守各平台条款。首期范围只含个人工作环境与约定的工具配置，Team 套餐暂不提供。</p></details>
         <details><summary>电脑断线以后，哪些任务能继续？</summary><p>远端主机须保持运行，任务也要能脱离本地连接继续执行。遇到人工确认、软件登录或主机重启，任务可能暂停。试用前需约定支持时段、故障处理和数据恢复方式。</p></details>
       </div>
